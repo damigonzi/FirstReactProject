@@ -1,0 +1,19 @@
+body {
+  background-color: #222;
+}
+
+.login-window {
+  margin-left: 00px;
+  font-size: 24px;
+  font-family: "Roboto", roboto;
+  color: #ddd;
+  /* border: 2px dotted yellow; */
+  align-items: center;
+  text-align: center;
+}
+
+.btn {
+  padding: 5px;
+  font-size: 50px;
+  /* border: 2px dotted yellow; */
+}
