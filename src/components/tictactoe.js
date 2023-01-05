@@ -1,22 +1,38 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import './tictactoe.css';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Button from '@mui/material/Button';
+import { color, fontFamily } from '@mui/system';
+import { Grid } from '@mui/material';
 
+import PlayerLogin from "./Login";
 
 function Square(props) {
-  return (
-    <button 
-      className="square" 
-      onClick={props.onClick}
-    >
-      {props.value}
-    </button>
-  );
+
+  if (props.value == "X") {
+    
+    return (
+      <button style={{color: "yellow"}}
+        className="square" 
+        onClick={props.onClick}
+      >
+        {props.value}
+      </button>
+    );
+  }
+  else {
+    return (
+      <button style={{color: "blue"}}
+        className="square" 
+        onClick={props.onClick}
+      >
+        {props.value}
+      </button>
+    );
+  }
     }
   
   class Board extends React.Component {
@@ -106,7 +122,7 @@ function Square(props) {
       
       let status;
       if (winner) {
-        status = 'Winner: ' + winner;
+        status = winner +' is the Winner  !!!';
       } else if (this.state.stepNumber === 9) {
         status = "It's a tie"
       } else {
@@ -115,19 +131,23 @@ function Square(props) {
 
       return (
         <div className="game" >
-          <div className="game-info">
-            <h1>TIC TAC TOE</h1>
-            <body>{status}</body>
-          </div>
-          <div className="game-board">
-            <Board 
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-            />
-          </div>
-          <div className="game-reset">
-            <ol>{moves[0]}</ol>
-          </div>
+          <Grid container spacing={2}>
+            <Grid item xs={4} className='player-info'>
+              <body style={{color: "purple"}}>Player 1: X</body>
+              <body style={{color: "yellow"}}>Player 2: O</body>
+            </Grid>
+            <Grid item xs={4} className="game-play">
+              <h1>TIC TAC TOE</h1>
+              <body>{status}</body>
+              <div className="game-board">
+                <Board 
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)}
+                />
+              </div>
+              <ol>{moves[0]}</ol>
+            </Grid>
+          </Grid>
         </div>
       );
     }

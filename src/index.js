@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import ReactDOM from 'react-dom/client';
-// import './index.css';
-import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Switch} from "react-router-dom";
 
-import PlayerName from "./components/login";
+
+import PlayerLogin from "./components/Login";
 import Game from "./components/tictactoe";
 
-
 class App extends Component {
+
   render() {
     return (
     <Router>
       <Routes>
-        <Route exact path='/' element={< PlayerName />}></Route>
-        <Route exact path='/login' element={< PlayerName />}></Route>
+        <Route exact path='/' element={< PlayerLogin />}></Route>
         <Route exact path='/tictactoe' element={< Game />}></Route>
       </Routes>
     </Router>

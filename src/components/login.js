@@ -1,59 +1,31 @@
 import React from 'react';
-import './login.css';
-import { TextField,Button,styled } from '@mui/material';
-import {Link } from "react-router-dom";
-import {Route, Navigate } from 'react-router-dom';
+import { Route, Navigate, Link, useNavigate } from "react-router-dom";
+import { TextField, Button } from '@mui/material';
 
-const CssTextField = styled(TextField)({
-  '& label.Mui-focused': {
-    color: 'purple',
-  },
-  '&.Mui-focused fieldset': {
-    color: '#ddd',
-    borderColor: 'purple',
-  },
-  '& .MuiOutlinedInput-root': {
-    '& label':{
-      color: '#ddd',
-    },
-    '& fieldset': {
-      borderColor: 'purple',
-    },
-    '&:hover fieldset': {
-      borderColor: '#5c1d5c',
-      borderWidth: 3,
-    },
-  },
-});
+import './Login.css';
 
-class PlayerName extends React.Component {
-  handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
-      <Route path='/login' element={ <Navigate replace to="/tictactoe" /> }/>
-    }
-  }
+export default function Login() {
 
-  render() {
-    return (
-      <div className='login-window'>
-        <h1>Please enter your name</h1>
+  const navigate = useNavigate();
+  const handleSubmit = event => {
+    event.preventDefault();
+    const Nickname = document.getElementById('outlined-basic').value;
+    console.log(Nickname)
+    navigate('/tictactoe');
+  };
+
+  return(
+    <div className="login-window">
+      <h1>Please Log In</h1>
+      <form onSubmit={ handleSubmit}>
+        <label>
+          <p>Username</p>
+          <TextField id="outlined-basic" label="Name" variant="outlined"/>
+        </label>
         <div>
-          <CssTextField inputProps={{ style: { color: "#ddd" }}}
-            id="outlined-basic" label="Name" variant="outlined"
-            onKeyPress={this.handleKeyPress}
-
-          />
+          <Button type="submit">Submit</Button>
         </div>
-        <div className='btn'>
-          <Link to="/tictactoe">
-            <Button variant="contained" >
-              enter 
-            </Button>
-          </Link>
-        </div>
-      </div>
-    )
-  }
+      </form>
+    </div>
+  )
 }
-
-export default PlayerName;
